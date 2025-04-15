@@ -13,13 +13,15 @@ struct HomeSceen: View {
     var body: some View {
         VStack{
             homeScreenHeder
-            PostRow(post: viewModel.posts[0])
-//            List(viewModel.posts, id: \.id) { post in
-//                PostRow(post: post)
-//                    .background(Color.red)
-//            }.background(Color.pink)
-               
-            
+                .padding(.top,20)
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(viewModel.posts, id: \.id) { post in
+                        PostRow(post: post)
+                    }
+                }
+                .padding(.top)
+            }
         }.frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
     }
     

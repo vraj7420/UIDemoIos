@@ -11,13 +11,14 @@ struct User: Identifiable, Codable {
     let id: String
     let username: String
     let avatarUrl: String
+    let lastSeen : String?
 }
 
 struct Song: Identifiable, Codable {
     let id: String
     let title: String
     let artist: String
-    let coverImageUrl: URL
+    let coverImageUrl: String
     let spotifyUrl: URL
     let type: SongType
 }
@@ -50,14 +51,15 @@ struct Post: Identifiable, Codable {
 let exampleUser = User(
     id: "user_001",
     username: "johndoe31",
-    avatarUrl:  "https://example.com/avatar/johndoe31.png"
+    avatarUrl:  "avatar",
+    lastSeen: "2d ago"
 )
 
 let exampleSong = Song(
     id: "song_001",
     title: "Rearrange Us",
     artist: "Mt. Joy",
-    coverImageUrl: URL(string: "https://example.com/image/mtjoy-cover.png")!,
+    coverImageUrl: "coverImage",
     spotifyUrl: URL(string: "https://open.spotify.com/track/example")!,
     type: .single
 )
@@ -67,7 +69,8 @@ let exampleComment = Comment(
     user: User(
         id: "user_002",
         username: "Bentheredonethat",
-        avatarUrl:"https://example.com/avatar/bentheredonethat.png"
+        avatarUrl:"avatar",
+        lastSeen: "2d ago"
     ),
     content: "I totally forgot this song existed. Thanks for the reminder. Commence repeat and sing...",
     createdAt: Date()
@@ -97,14 +100,16 @@ let postList: [Post] = [
         user: User(
             id: "user_003",
             username: "musiclover91",
-            avatarUrl:""
+            avatarUrl:"avatar",
+            lastSeen: "2d ago"
+
         ),
         content: "This track hits different at night. 🌓✨",
         song: Song(
             id: "song_002",
             title: "Night Owl",
             artist: "Jungle",
-            coverImageUrl: URL(string: "https://example.com/image/nightowl-cover.png")!,
+            coverImageUrl: "coverImage",
             spotifyUrl: URL(string: "https://open.spotify.com/track/nightowl")!,
             type: .album
         ),
@@ -119,14 +124,15 @@ let postList: [Post] = [
         user: User(
             id: "user_004",
             username: "vibequeen",
-            avatarUrl:""
+            avatarUrl:"avatar",
+            lastSeen: "2d ago"
         ),
         content: "An underrated gem. Can't stop vibing to the bassline 🎶",
         song: Song(
             id: "song_003",
             title: "Golden Hour",
             artist: "Kacey Musgraves",
-            coverImageUrl: URL(string: "https://example.com/image/goldenhour.png")!,
+            coverImageUrl: "coverImage",
             spotifyUrl: URL(string: "https://open.spotify.com/track/goldenhour")!,
             type: .album
         ),
@@ -142,14 +148,15 @@ let postList: [Post] = [
         user: User(
             id: "user_005",
             username: "throwbackjamz",
-            avatarUrl:""
+            avatarUrl:"avatar",
+            lastSeen: "2d ago"
         ),
         content: "Instant nostalgia. Takes me straight back to summer 2015 ☀️",
         song: Song(
             id: "song_004",
             title: "Electric Feel",
             artist: "MGMT",
-            coverImageUrl: URL(string: "https://example.com/image/electricfeel.png")!,
+            coverImageUrl: "coverImage",
             spotifyUrl: URL(string: "https://open.spotify.com/track/electricfeel")!,
             type: .single
         ),
@@ -164,14 +171,15 @@ let postList: [Post] = [
         user: User(
             id: "user_006",
             username: "rhythmjunkie",
-            avatarUrl:""
+            avatarUrl:"avatar",
+            lastSeen: "2d ago"
         ),
         content: "🔥🔥🔥 Drum groove on point. Cranked this one in the car all morning.",
         song: Song(
             id: "song_005",
             title: "Tadow",
             artist: "Masego & FKJ",
-            coverImageUrl: URL(string: "https://example.com/image/tadow.png")!,
+            coverImageUrl: "coverImage",
             spotifyUrl: URL(string: "https://open.spotify.com/track/tadow")!,
             type: .single
         ),
@@ -186,14 +194,15 @@ let postList: [Post] = [
         user: User(
             id: "user_007",
             username: "groovelover",
-            avatarUrl:""
+            avatarUrl:"avatar",
+            lastSeen: "2d ago"
         ),
         content: "This song lives rent-free in my head. Can't stop humming it 🎧",
         song: Song(
             id: "song_006",
             title: "Redbone",
             artist: "Childish Gambino",
-            coverImageUrl: URL(string: "https://example.com/image/redbone.png")!,
+            coverImageUrl: "coverImage",
             spotifyUrl: URL(string: "https://open.spotify.com/track/redbone")!,
             type: .album
         ),
