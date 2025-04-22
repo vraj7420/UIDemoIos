@@ -14,14 +14,23 @@ struct HomeSceen: View {
         VStack{
             homeScreenHeder
                 .padding(.top,20)
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(viewModel.posts, id: \.id) { post in
-                        PostRow(post: post)
+            TabView(selection:$viewModel.seletedIndexTopTapbar) {
+                ForEach(viewModel.topTabBarList.indices, id: \.self) { index in
+                    ScrollView {
+                        ScrollView {
+                            LazyVStack(alignment: .leading, spacing: 0) {
+                                ForEach(viewModel.posts, id: \.id) { post in
+                                    PostRow(post: post)
+                                }
+                            }
+                            .padding(.top)
+                        }
                     }
+                    .tag(index)
                 }
-                .padding(.top)
             }
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .never))
         }.frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
     }
     
