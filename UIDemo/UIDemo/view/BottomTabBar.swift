@@ -43,6 +43,7 @@ enum Tab: CaseIterable {
 
 struct BottomTabBar: View {
     @State private var selectedTab: Tab = .home
+    @Binding var path: NavigationPath
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -50,7 +51,7 @@ struct BottomTabBar: View {
             Group {
                 switch selectedTab {
                 case .home:
-                    HomeSceen()
+                    HomeSceen(path: $path)
                 case .inbox:
                     Color.red
                 case .share:

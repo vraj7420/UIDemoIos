@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeSceen: View {
     @ObservedObject var viewModel = HomeScreenViewModel ()
+    @Binding var path: NavigationPath
     
     var body: some View {
         VStack{
@@ -30,6 +31,11 @@ struct HomeSceen: View {
                 }
             }
             .tabViewStyle(.page)
+            .onChange(of: viewModel.seletedIndexTopTapbar) { _, newIndex in
+                if viewModel.topTabBarList[newIndex] == StringConsatnts.genreTabTitle {
+                    path.append(StringConsatnts.NavigationPathString.FilterScreen)
+                }
+            }
             .indexViewStyle(.page(backgroundDisplayMode: .never))
         }.frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
     }
@@ -44,6 +50,6 @@ struct HomeSceen: View {
     }
 }
 
-#Preview {
-    HomeSceen()
-}
+//#Preview {
+//    HomeSceen()
+//}

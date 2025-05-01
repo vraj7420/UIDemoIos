@@ -25,5 +25,10 @@ enum StringConsatnts {
     static let sharetabLable = "Share"
     static let discovertabLable = "Discover"
     static let profiletabLable = "Profile"
+    
+    enum NavigationPathString {
+        static let FilterScreen = "FilterScreen"
+
+    }
 
 }
