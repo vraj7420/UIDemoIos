@@ -44,6 +44,7 @@ enum Tab: CaseIterable {
 struct BottomTabBar: View {
     @State private var selectedTab: Tab = .home
     @Binding var path: NavigationPath
+    @Binding var selectedFilters: [MusicGenre]
 
     var body: some View {
         ZStack(alignment: .bottom) {

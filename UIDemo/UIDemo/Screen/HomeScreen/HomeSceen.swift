@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeSceen: View {
     @ObservedObject var viewModel = HomeScreenViewModel ()
     @Binding var path: NavigationPath
-    
+    @Binding  var seletedFilterList: [MusicGenre]
+
     var body: some View {
         VStack{
             homeScreenHeder

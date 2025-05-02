@@ -15,5 +15,6 @@ class HomeScreenViewModel:ObservableObject {
         StringConsatnts.genreTabTitle
     ]
     @Published var seletedIndexTopTapbar  = 0
+    @Published var selectedFilter: [MusicGenre] = []
     let posts  = postList
 }
