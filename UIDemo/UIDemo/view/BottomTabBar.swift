@@ -52,7 +52,7 @@ struct BottomTabBar: View {
             Group {
                 switch selectedTab {
                 case .home:
-                    HomeSceen(path: $path)
+                    HomeSceen(path: $path, seletedFilterList: $selectedFilters)
                 case .inbox:
                     Color.red
                 case .share:

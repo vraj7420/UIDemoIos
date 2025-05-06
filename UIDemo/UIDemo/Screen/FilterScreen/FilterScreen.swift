@@ -67,6 +67,7 @@ struct FilterScreen: View {
                     }
                     }
                     .padding(.horizontal)
+                    .padding(.top)
                 }
             }
             .onAppear {

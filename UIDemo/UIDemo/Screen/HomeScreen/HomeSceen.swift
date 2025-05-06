@@ -16,41 +16,53 @@ struct HomeSceen: View {
         VStack{
             homeScreenHeder
                 .padding(.top,20)
-            TabView(selection:$viewModel.seletedIndexTopTapbar) {
-                ForEach(viewModel.topTabBarList.indices, id: \.self) { index in
-                    ScrollView {
+            if seletedFilterList.isEmpty {
+                TopTabBar(itemList: viewModel.topTabBarList, selectedIndex: $viewModel.seletedIndexTopTapbar)
+                    .padding(.horizontal,24)
+                TabView(selection:$viewModel.seletedIndexTopTapbar) {
+                    ForEach(viewModel.topTabBarList.indices, id: \.self) { index in
                         ScrollView {
-                            LazyVStack(alignment: .leading, spacing: 0) {
-                                ForEach(viewModel.posts, id: \.id) { post in
-                                    PostRow(post: post)
-                                }
-                            }
-                            .padding(.top)
+                            renderPostList
                         }
+                        .tag(index)
                     }
-                    .tag(index)
+                }
+                .tabViewStyle(.page)
+                .onChange(of: viewModel.seletedIndexTopTapbar) { _, newIndex in
+                    if viewModel.topTabBarList[newIndex] == StringConsatnts.genreTabTitle {
+                        path.append(StringConsatnts.NavigationPathString.FilterScreen)
+                    }
+                }
+                .indexViewStyle(.page(backgroundDisplayMode: .never))
+            } else{
+                VStack{
+                    SelectedFilterList(itemList: $seletedFilterList)
+                        .padding(.horizontal,24)
+                    renderPostList
                 }
             }
-            .tabViewStyle(.page)
-            .onChange(of: viewModel.seletedIndexTopTapbar) { _, newIndex in
-                if viewModel.topTabBarList[newIndex] == StringConsatnts.genreTabTitle {
-                    path.append(StringConsatnts.NavigationPathString.FilterScreen)
-                }
-            }
-            .indexViewStyle(.page(backgroundDisplayMode: .never))
+            
         }.frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
+            .onAppear{
+                viewModel.seletedIndexTopTapbar = 0
+            }
     }
     
     var homeScreenHeder: some View {
-        VStack (alignment: .leading,spacing: 24){
-            Image(ImageConstants.logoImage)
-            TopTabBar(itemList: viewModel.topTabBarList, selectedIndex: $viewModel.seletedIndexTopTapbar)
-        }.frame(maxWidth: .infinity,alignment: .top)
+        Image(ImageConstants.logoImage)
+            .frame(maxWidth: .infinity,alignment: .leading)
             .padding(.horizontal,24)
-        
+    }
+    
+    var  renderPostList: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(viewModel.posts, id: \.id) { post in
+                    PostRow(post: post)
+                }
+            }
+            .padding(.top)
+        }
     }
 }
 
-//#Preview {
-//    HomeSceen()
-//}
