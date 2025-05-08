@@ -46,6 +46,13 @@ struct HomeSceen: View {
             .onAppear{
                 viewModel.seletedIndexTopTapbar = 0
             }
+            .sheet(isPresented: $viewModel.showSheet) {
+                    MenuSheet()
+                        .presentationDetents([.medium])
+                        .presentationCornerRadius(60)
+                    
+                }
+
     }
     
     var homeScreenHeder: some View {
@@ -58,7 +65,9 @@ struct HomeSceen: View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.posts, id: \.id) { post in
-                    PostRow(post: post)
+                    PostRow(post: post){
+                        viewModel.showSheet.toggle()
+                    }
                 }
             }
             .padding(.top)

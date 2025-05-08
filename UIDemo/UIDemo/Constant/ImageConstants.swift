@@ -28,4 +28,6 @@ enum ImageConstants {
     static let discoverSelected = "discoverSelected"
     static let profileDeselected = "profileDeselected"
     static let profileSelected = "profileSelected"
+    static let menuIcon = "menuIcon"
+
 }

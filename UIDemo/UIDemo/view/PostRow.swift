@@ -10,29 +10,35 @@ import SwiftUI
 struct PostRow: View {
     let post: Post
     @State var commentText:String = ""
+    var moreMenuSelected:()->Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             
             // User Info
-            HStack(spacing: 12) {
-                Image(post.user.avatarUrl)
-                    .resizable()
-                    .frame(width: 36, height: 36)
-                    .clipShape(Circle())
-                VStack(alignment: .leading,spacing: 2){
-                    Text(post.user.username)
-                        .fontWeight(.semibold)
-                    if let lastSeen = post.user.lastSeen {
-                        Text(lastSeen)
-                            .font(.system(size: 12))
-                            .fontWeight(.light)
-                            .foregroundColor(.secondary)
+            HStack(alignment: .center){
+                HStack(alignment: .center,spacing: 12) {
+                    Image(post.user.avatarUrl)
+                        .resizable()
+                        .frame(width: 36, height: 36)
+                        .clipShape(Circle())
+                    VStack(alignment: .leading,spacing: 2){
+                        Text(post.user.username)
+                            .fontWeight(.semibold)
+                        if let lastSeen = post.user.lastSeen {
+                            Text(lastSeen)
+                                .font(.system(size: 12))
+                                .fontWeight(.light)
+                                .foregroundColor(.secondary)
+                        }
                     }
                 }
-                
-                
                 Spacer()
+                Button{
+                    moreMenuSelected()
+                }label: {
+                    Image(ImageConstants.menuIcon)
+                }
             }
             Text(post.content)
                 .font(.body)

@@ -16,5 +16,7 @@ class HomeScreenViewModel:ObservableObject {
     ]
     @Published var seletedIndexTopTapbar  = 0
     @Published var selectedFilter: [MusicGenre] = []
+    @Published var showSheet  = false
+
     let posts  = postList
 }
